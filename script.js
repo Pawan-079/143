@@ -1,17 +1,29 @@
-const noBtn = document.getElementById("noBtn");
-const yesBtn = document.getElementById("yesBtn");
+const yesBtn = document.getElementById("yes-btn");
+const noBtn = document.getElementById("no-btn");
 const surprise = document.getElementById("surprise");
 
-// Make "No" button move when hovered over
-noBtn.addEventListener("mouseover", () => {
-  const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
-  const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
-  
-  noBtn.style.left = `${x}px`;
-  noBtn.style.top = `${y}px`;
-});
-
-// Show surprise when "Yes" button is clicked
+// Add click event to Yes button
 yesBtn.addEventListener("click", () => {
   surprise.classList.remove("hidden");
 });
+
+// Move the No button randomly on hover or touch
+function moveNoButton() {
+  const container = document.querySelector(".container");
+  const containerRect = container.getBoundingClientRect();
+  const noBtnRect = noBtn.getBoundingClientRect();
+
+  const maxX = containerRect.width - noBtnRect.width;
+  const maxY = containerRect.height - noBtnRect.height;
+
+  const randomX = Math.random() * maxX;
+  const randomY = Math.random() * maxY;
+
+  noBtn.style.transform = `translate(${randomX}px, ${randomY}px)`;
+}
+
+// Detect hover (for desktops/laptops)
+noBtn.addEventListener("mouseover", moveNoButton);
+
+// Detect touch (for phones/tablets)
+noBtn.addEventListener("touchstart", moveNoButton);
