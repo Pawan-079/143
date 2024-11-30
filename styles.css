@@ -1,13 +1,12 @@
-/* General styles */
 body {
+  font-family: Arial, sans-serif;
   margin: 0;
-  font-family: 'Arial', sans-serif;
-  background: linear-gradient(to bottom right, #ff9a9e, #fad0c4, #fad0c4);
+  padding: 0;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  overflow: hidden;
+  min-height: 100vh;
+  background: linear-gradient(45deg, #ff9a9e, #fad0c4);
 }
 
 .container {
@@ -15,66 +14,50 @@ body {
 }
 
 h1 {
-  font-size: 3rem;
-  color: #ffffff;
-  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
-}
-
-.buttons {
-  margin-top: 20px;
+  font-size: 2rem;
+  color: #fff;
+  margin-bottom: 20px;
 }
 
 button {
   font-size: 1.5rem;
   padding: 10px 20px;
-  border: none;
-  border-radius: 20px;
-  cursor: pointer;
   margin: 10px;
-  transition: all 0.3s ease;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: transform 0.2s;
 }
 
-#yesBtn {
-  background-color: #ff6f91;
-  color: #fff;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+#yes-btn {
+  background-color: #4caf50;
+  color: white;
 }
 
-#yesBtn:hover {
-  background-color: #ff467e;
-  transform: scale(1.1);
-}
-
-#noBtn {
-  background-color: #9e9e9e;
-  color: #fff;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+#no-btn {
+  background-color: #f44336;
+  color: white;
   position: absolute;
 }
 
-#noBtn:hover {
-  background-color: #737373;
+#surprise {
+  margin-top: 20px;
+  font-size: 1.8rem;
+  color: #fff;
+  animation: pop-in 0.5s ease-in-out;
 }
 
 .hidden {
   display: none;
 }
 
-#surprise {
-  margin-top: 20px;
-  animation: popIn 0.5s ease-out;
-}
-
-@keyframes popIn {
+@keyframes pop-in {
   0% {
-    transform: scale(0);
+    transform: scale(0.5);
     opacity: 0;
-  }
-  80% {
-    transform: scale(1.1);
-    opacity: 1;
   }
   100% {
     transform: scale(1);
+    opacity: 1;
   }
 }
