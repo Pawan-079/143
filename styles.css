@@ -1,12 +1,13 @@
+/* General styling */
 body {
-  font-family: Arial, sans-serif;
+  font-family: 'Arial', sans-serif;
   margin: 0;
   padding: 0;
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
-  background: linear-gradient(45deg, #ff9a9e, #fad0c4);
+  height: 100vh;
+  background: linear-gradient(135deg, #ff9a9e, #fad0c4);
 }
 
 .container {
@@ -14,41 +15,69 @@ body {
 }
 
 h1 {
-  font-size: 2rem;
+  font-size: 2.5rem;
   color: #fff;
   margin-bottom: 20px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
 }
 
 button {
   font-size: 1.5rem;
   padding: 10px 20px;
-  margin: 10px;
   border: none;
-  border-radius: 5px;
+  border-radius: 10px;
   cursor: pointer;
-  transition: transform 0.2s;
+  transition: transform 0.3s, background-color 0.3s;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 #yes-btn {
   background-color: #4caf50;
-  color: white;
+  color: #fff;
 }
 
 #no-btn {
   background-color: #f44336;
-  color: white;
+  color: #fff;
   position: absolute;
+}
+
+button:hover {
+  transform: scale(1.1);
 }
 
 #surprise {
   margin-top: 20px;
   font-size: 1.8rem;
   color: #fff;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
   animation: pop-in 0.5s ease-in-out;
 }
 
 .hidden {
   display: none;
+}
+
+/* Responsive styling for smaller screens */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 2rem;
+  }
+
+  button {
+    font-size: 1.2rem;
+    padding: 8px 16px;
+  }
+
+  #surprise {
+    font-size: 1.5rem;
+  }
 }
 
 @keyframes pop-in {
