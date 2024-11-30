@@ -1,6 +1,7 @@
 const yesBtn = document.getElementById("yes-btn");
 const noBtn = document.getElementById("no-btn");
 const surprise = document.getElementById("surprise");
+const animatedEmoji = document.getElementById("animated-emoji");
 
 // Function to move the "No" button randomly, far from the click area
 function moveNoButton(event) {
@@ -26,11 +27,11 @@ function moveNoButton(event) {
   noBtn.style.transform = `translate(${boundedX}px, ${boundedY}px)`;
 }
 
-// Add hover and touchstart events for the "No" button
-noBtn.addEventListener("mouseover", moveNoButton);
-noBtn.addEventListener("touchstart", moveNoButton);
+// Add click event for the "No" button to move it whenever clicked
+noBtn.addEventListener("click", moveNoButton);
 
 // Reveal the surprise message when "Yes" is clicked
 yesBtn.addEventListener("click", () => {
   surprise.classList.remove("hidden");
+  animatedEmoji.style.display = "block"; // Show animated emoji after "Yes" is clicked
 });
