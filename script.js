@@ -16,7 +16,7 @@ function moveNoButton(event) {
   const clientX = event.clientX || event.touches[0].clientX;
   const clientY = event.clientY || event.touches[0].clientY;
 
-  // Move the "No" button far from the click position
+  // Move the "No" button far from the click position by a random amount
   const randomX = clientX + Math.random() * maxX / 2 - maxX / 4;  // Randomly shift away from the click position
   const randomY = clientY + Math.random() * maxY / 2 - maxY / 4;
 
@@ -24,6 +24,8 @@ function moveNoButton(event) {
   const boundedX = Math.min(Math.max(randomX, 0), maxX);
   const boundedY = Math.min(Math.max(randomY, 0), maxY);
 
+  // Move the button to the new position
+  noBtn.style.transition = 'transform 0.3s ease'; // Add smooth transition
   noBtn.style.transform = `translate(${boundedX}px, ${boundedY}px)`;
 }
 
