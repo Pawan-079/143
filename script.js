@@ -21,7 +21,7 @@ function getButtonBounds() {
   return noBtn.getBoundingClientRect();
 }
 
-// Function to move the "No" button by 300px
+// Function to move the "No" button by 300px instantly
 function moveNoButton() {
   const containerBounds = getContainerBounds();
   const buttonBounds = getButtonBounds();
@@ -42,23 +42,15 @@ function moveNoButton() {
     if (offsetY > maxY) offsetY = 0; // Reset position if it exceeds the container height
   }
 
-  // Apply new position with a smooth transition
-  noBtn.style.transition = 'transform 0.3s ease'; // Smooth movement
+  // Apply new position instantly without transition
+  noBtn.style.transition = 'none'; // Disable smooth transition for instant movement
   noBtn.style.transform = `translate(${offsetX}px, ${offsetY}px)`;
 }
 
-// Function to continuously move the "No" button when clicked
-function moveContinuously() {
-  const interval = setInterval(moveNoButton, 300); // Move every 300ms
-
-  // Stop the continuous movement after a certain period (optional)
-  setTimeout(() => {
-    clearInterval(interval); // Stop moving after 3 seconds (you can adjust the time)
-  }, 3000); // Example: Stop after 3 seconds
-}
-
 // Event listener for the "No" button
-noBtn.addEventListener("click", moveContinuously);
+noBtn.addEventListener("click", () => {
+  moveNoButton(); // Move instantly when clicked
+});
 
 // Event listener for the "Yes" button
 yesBtn.addEventListener("click", () => {
