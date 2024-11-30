@@ -3,56 +3,54 @@ const yesBtn = document.getElementById("yes-btn");
 const noBtn = document.getElementById("no-btn");
 const surprise = document.getElementById("surprise");
 
-// Position offsets to track the button's position
-let offsetX = 0;
-let offsetY = 0;
-
-// Maximum movement (in pixels) per click
-const moveDistance = 300;
-
-// Get container boundaries
-function getContainerBounds() {
-  const container = document.querySelector(".container");
-  return container.getBoundingClientRect();
-}
-
-// Get current button boundaries
-function getButtonBounds() {
-  return noBtn.getBoundingClientRect();
-}
-
-// Function to move the "No" button by 300px instantly
+// Function to move the "No" button randomly
 function moveNoButton() {
-  const containerBounds = getContainerBounds();
-  const buttonBounds = getButtonBounds();
+  const container = document.querySelector(".container");
+  const containerBounds = container.getBoundingClientRect();
+  const buttonBounds = noBtn.getBoundingClientRect();
 
-  // Calculate the maximum possible X and Y positions (so the button doesn't go out of bounds)
+  // Random positions ensuring the button doesn't go out of bounds
   const maxX = containerBounds.width - buttonBounds.width;
   const maxY = containerBounds.height - buttonBounds.height;
 
-  // Determine random direction (X or Y)
-  const moveDirection = Math.random() < 0.5 ? 'X' : 'Y';
+  const randomX = Math.random() * maxX;
+  const randomY = Math.random() * maxY;
 
-  // Move button in the random direction
-  if (moveDirection === 'X') {
-    offsetX += moveDistance;
-    if (offsetX > maxX) offsetX = 0; // Reset position if it exceeds the container width
-  } else {
-    offsetY += moveDistance;
-    if (offsetY > maxY) offsetY = 0; // Reset position if it exceeds the container height
-  }
-
-  // Apply new position instantly without transition
-  noBtn.style.transition = 'none'; // Disable smooth transition for instant movement
-  noBtn.style.transform = `translate(${offsetX}px, ${offsetY}px)`;
+  noBtn.style.left = `${randomX}px`;
+  noBtn.style.top = `${randomY}px`;
 }
 
-// Event listener for the "No" button
-noBtn.addEventListener("click", () => {
-  moveNoButton(); // Move instantly when clicked
-});
+// Add event listeners
+noBtn.addEventListener("click", moveNoButton);
 
-// Event listener for the "Yes" button
 yesBtn.addEventListener("click", () => {
   surprise.classList.remove("hidden");
+  startConfetti(); // Optional confetti effect
 });
+
+// Confetti effect (optional enhancement)
+function startConfetti() {
+  const confettiContainer = document.createElement("div");
+  confettiContainer.style.position = "absolute";
+  confettiContainer.style.top = "0";
+  confettiContainer.style.left = "0";
+  confettiContainer.style.width = "100%";
+  confettiContainer.style.height = "100%";
+  confettiContainer.style.pointerEvents = "none";
+  document.body.appendChild(confettiContainer);
+
+  for (let i = 0; i < 100; i++) {
+    const confetti = document.createElement("div");
+    confetti.style.position = "absolute";
+    confetti.style.width = "10px";
+    confetti.style.height = "10px";
+    confetti.style.backgroundColor =
+      `rgb(${Math.random() * 255}, ${Math.random() * 255}, ${Math.random() * 255})`;
+    confetti.style.left = `${Math.random() * 100}%`;
+    confetti.style.top = `${Math.random() * 100}%`;
+    confetti.style.animation = `fall ${Math.random() * 3 + 2}s linear infinite`;
+    confettiContainer.appendChild(confetti);
+  }
+
+  setTimeout(() => confettiContainer.remove(), 5000);
+}
