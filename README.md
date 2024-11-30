@@ -48,7 +48,8 @@ This is a fun and romantic webpage that asks the question, "Do You Love Me?" wit
 
 ## Preview
 
-![Preview Screenshot](preview.png)
+![Preview Screenshot](![image](https://github.com/user-attachments/assets/150d99df-3920-4940-8284-86112e54b8f6)
+)
 
 ## Technologies Used
 
