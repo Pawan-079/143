@@ -90,3 +90,39 @@ button:hover {
     opacity: 1;
   }
 }
+
+/* Animated emoji styling */
+#animated-emoji {
+  font-size: 3rem;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  animation: move-emoji 3s infinite ease-in-out, bounce 2s infinite ease-in-out;
+}
+
+@keyframes move-emoji {
+  0% {
+    transform: translate(-50%, -50%);
+  }
+  25% {
+    transform: translate(-30%, -40%);
+  }
+  50% {
+    transform: translate(-50%, -60%);
+  }
+  75% {
+    transform: translate(-70%, -40%);
+  }
+  100% {
+    transform: translate(-50%, -50%);
+  }
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
