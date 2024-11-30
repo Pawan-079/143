@@ -1,4 +1,4 @@
-# I Love You Website
+# Propose Website
 
 This is a fun and romantic webpage that asks the question, "Do You Love Me?" with two interactive buttons: **Yes** and **No**. The "No" button teases the user by moving around, while the "Yes" button reveals a congratulatory message with an animated surprise.
 
