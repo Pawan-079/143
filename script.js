@@ -2,8 +2,8 @@ const yesBtn = document.getElementById("yes-btn");
 const noBtn = document.getElementById("no-btn");
 const surprise = document.getElementById("surprise");
 
-// Function to move the "No" button randomly
-function moveNoButton() {
+// Function to move the "No" button randomly, far from the click area
+function moveNoButton(event) {
   const container = document.querySelector(".container");
   const containerRect = container.getBoundingClientRect();
   const noBtnRect = noBtn.getBoundingClientRect();
@@ -11,10 +11,19 @@ function moveNoButton() {
   const maxX = containerRect.width - noBtnRect.width;
   const maxY = containerRect.height - noBtnRect.height;
 
-  const randomX = Math.random() * maxX;
-  const randomY = Math.random() * maxY;
+  // Get the mouse or touch position to calculate the farthest point from the click
+  const clientX = event.clientX || event.touches[0].clientX;
+  const clientY = event.clientY || event.touches[0].clientY;
 
-  noBtn.style.transform = `translate(${randomX}px, ${randomY}px)`;
+  // Move the "No" button far from the click position
+  const randomX = clientX + Math.random() * maxX / 2 - maxX / 4;  // Randomly shift away from the click position
+  const randomY = clientY + Math.random() * maxY / 2 - maxY / 4;
+
+  // Ensure the button stays within the container bounds
+  const boundedX = Math.min(Math.max(randomX, 0), maxX);
+  const boundedY = Math.min(Math.max(randomY, 0), maxY);
+
+  noBtn.style.transform = `translate(${boundedX}px, ${boundedY}px)`;
 }
 
 // Add hover and touchstart events for the "No" button
